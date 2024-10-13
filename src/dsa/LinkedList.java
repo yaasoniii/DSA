@@ -104,7 +104,7 @@ public class LinkedList {
             temp2 = temp2.next;
             index++;
         }
-        if (temp == null) { // Contact not found
+        if (temp == null) {
             JOptionPane.showMessageDialog(null, "Contact not found.");
             return;
         }

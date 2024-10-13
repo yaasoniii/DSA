@@ -38,13 +38,111 @@ void displayAllContacts(){
   Name temp = headForName
   Number temp2 = headForNumbers
 
+  IF (temp == NULL) THEN
+    display "No contacts available."
+    return
+  ENDIF
   WHILE (temp-> next!= NULL)THEN
-  display temp->data+":"+temp2->data  
-  
+    display temp->data+":"+temp2->data
+    temp = temp->next
+    temp2 = temp2->next
+
+}
+search(nameToSearch){
+if(headForNames==NULL)THEN
+    display "No contacts available."
+    return -1
+ELSE
+    Name temp = headForNames
+    Number temp2 = headFoNumbers
+    index = 0
+    WHILE(!temp->data==nameToSearch AND temp->next !=NULL)
+        temp = temp->next
+        temp2 = temp->next
+        index++
+    ENDWHILE
+    IF(temp->data==nameToSearch)THEN
+        display "Contact found"+ temp->data + ":" + temp2->data
+        return index
+    ELSE
+        display "Contact not found"
+    ENDIF
+ENDIF
+
+return-1
+}
+
+void deleteContact(nameToDelete) {
+  IF (headForNames == NULL) THEN
+    display "No contacts available."
+    return
+  ENDIF
+
+Name temp = headForNames
+Number temp2 = headForNumbers
+index = 0
+
+WHILE (temp != NULL AND temp->data != nameToDelete)
+    temp = temp->next
+    temp2 = temp2->next
+    index++
+ENDWHILE
+
+IF (temp == NULL) THEN
+    display "Contact not found."
+    return
+ENDIF
+
+IF (index == 0) THEN
+    headForNames = headForNames->next
+    headForNumbers = headForNumbers->next
+    display "Contact deleted."
+    return
+ENDIF
+
+Name tempName = headForNames
+Number tempNumber = headForNumbers
+count = 0
+
+WHILE (count < index - 1)
+    tempName = tempName->next
+    tempNumber = tempNumber->next
+    count++
+ENDWHILE
+
+IF (tempName->next->next == NULL) THEN
+    tempName->next = NULL
+    tempNumber->next = NULL
+ELSE
+    tempName->next = tempName->next->next
+    tempNumber->next = tempNumber->next->next
+  ENDIF
+
+  display "Contact deleted."
 }
 
 
+void updateContact(nameOfContactToUpdate, newNumber) {
+ IF (headForNames == NULL) THEN
+    display "No contacts available."
+    return
+ENDIF
 
+  Name temp = headForNames
+  Number temp2 = headForNumbers
 
+WHILE (temp != NULL AND temp->data != nameOfContactToUpdate)
+    temp = temp->next
+    temp2 = temp2->next
+ENDWHILE
 
+IF (temp != NULL) THEN
+    temp2->data = newNumber
+    display "Contact updated: " + temp->data + ": " + temp2->data
+ELSE
+    display "Contact not found."
+ENDIF
 }
+END
+
+

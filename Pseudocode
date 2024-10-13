@@ -28,7 +28,7 @@ LinkedList{
 else
   Name temp =  headForNames
   Number temp2 = headForNumbers 
-  WHILE(temp->next!=NULL)THEN
+  WHILE(temp->next!=NULL)
     temp=temp->next
     temp2=tem2p->next
   ENDWHILE

@@ -15,7 +15,7 @@ LinkedList{
   void addContact(number,name){
   Number * newNumber
   Name * newName
-  newNumber -> data = number
+  newNumber -> data = Number
   newName -> data = Name
 
   newNumber->next=NULL

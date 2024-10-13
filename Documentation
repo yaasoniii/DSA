@@ -1,1 +1,84 @@
+Group members:
+Tangi Amiti-224081349
+Jason Nghiilwamo-224081985
+Hilya Nuukula-224081497
+Florinda Immanuel-224082256
+Abigail	Scholtz-224008587
+Jada Shangadi-224079948
+
+
+Project Overview
+•The project aims to develop a competent phonebook application for a Namibian telecommunications company using data structures such as arrays and linked lists.
+This application will support operations like inserting contacts, searching for contacts, updating contacts, deleting and displaying contacts. Additionally, the
+application will then display the contacts as entered into the insert algorithm.
+
+
+Functionalities
+•	The key operations mentioned below will be implemented using linear data structures:
+•	Insert Contact: Add a new contact to the phonebook.
+•	Search Contact: Find a contact based on their name.
+•	Display all contacts: List all contacts stored in the phonebook.
+•	Update Contact: Modify the contacts by changing the phone number.
+•	Delete Contact: Delete contact, removing it from phonebook.
+•	Analyze Efficiency: Test the efficiency of the search algorithm in terms of time complexity.
+
+
+
+Modules
+•	Insert Contact:
+•	Input: Contact name and phone number.
+•	Process: Add the new contact to the data structure and resize the data structure if needed.
+•	Output: Message confirming that the new contact has been inserted.
+•	Search Contact:
+•	Input: Search query (by Name)
+•	Process: Search through the application and match the query with the contact details.
+•	Output: Return the message if contact details found or ‘not found’.
+
+
+•	Display Contact:
+•	Input: None
+•	Process: Print all stored contacts.
+•	Output: List all contacts in the phonebook.
+
+
+•	Update Contact:
+•	Input: Search query and updated contact details.
+•	Process: Search for the contact and then update the existing details with the new ones.
+•	Output: Output a message confirming the update.
+
+
+•	Delete Contact:
+•	Input: Search query by name.
+•	Process: Find the contact by name and remove it from the data structure.
+•	Output: Output a message confirming the update.
+
+
+
+•	Efficiency Analysis
+•	Sorted Link list (linear search): O(n), if the array is not sorted, allowing for linear search implementation.
+
+
+
+
+Search Algorithm Efficiency
+•	The linear search in charge for finding contacts in an unsorted list has a time complexity of O(n), where n is the number of contacts.
+
+
+
+Conclusion
+•	The phonebook application developed using linked lists is more simple , easy to understand and more suitable for smaller datasets.
+
+
+References
+•	Lecture notes on Sorting Algorithms, Linked lists
+
+
+
+
+
+
+
+
+
+
 

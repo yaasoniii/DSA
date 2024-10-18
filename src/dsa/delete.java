@@ -4,9 +4,11 @@
  */
 package dsa;
 
+import java.util.LinkedList;
+
 /**
  *
- * @author Jason
+ * @author Linus
  */
 public class delete extends javax.swing.JFrame {
 
@@ -106,7 +108,7 @@ public class delete extends javax.swing.JFrame {
         Variables.phonebook.displayAllContacts();
         phonebookPage1 pbp = new phonebookPage1();
         pbp.show();
-        
+
         dispose();
     }//GEN-LAST:event_btnDeleteActionPerformed
 

@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Florinda & Jada
+ * @author Linus
  */
 public class phonebookPage1 extends javax.swing.JFrame {
 
@@ -171,7 +171,7 @@ public class phonebookPage1 extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String nameToBeSearched = searchBarTF.getText();
-        Variables.phonebook.search(nameToBeSearched);
+        Variables.phonebook.binarySearch(nameToBeSearched);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -8,7 +8,6 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 class Name {
-
     String data;
     Name next;
 }
@@ -40,6 +39,19 @@ public class LinkedList {
         } else {
             Name temp = headForNames;
             Number temp2 = headForNumbers;
+            int index = 0;
+            while (temp != null) {
+                if (temp.data.equalsIgnoreCase(name)) {
+                    JOptionPane.showMessageDialog(null, "name already exists");
+                    return;
+                }
+                temp = temp.next;
+                temp2 = temp2.next;
+                index++;
+
+            }
+            temp = headForNames;
+            temp2 = headForNumbers;
 
             while (temp.next != null) {
                 temp = temp.next;
@@ -47,111 +59,180 @@ public class LinkedList {
             }
             temp.next = newName;
             temp2.next = newNumber;
+            Variables.phonebook.insertionSort();
+
         }
     }
 
     public String displayAllContacts() {
-        Name temp = headForNames;
-        Number temp2 = headForNumbers;
-        Variables.listOfContacts = "";
-        while (temp.next != null) {
-            Variables.listOfContacts += temp.data + ": " + temp2.data + "\n";
-            temp = temp.next;
-            temp2 = temp2.next;
-        }
-        Variables.listOfContacts += temp.data + ": " + temp2.data + "\n";
-        return Variables.listOfContacts;
-
-    }
-
-    public int search(String nameToSearch) {
-        if (headForNames == null) {
-            JOptionPane.showMessageDialog(null, "no contacts available.");
-            return -1;
-        } else {
+        Variables.phonebook.insertionSort();
+        if (headForNames != null) {
             Name temp = headForNames;
             Number temp2 = headForNumbers;
-            int index = 0;
-            while (!temp.data.equals(nameToSearch) && temp.next != null) {
+            Variables.listOfContacts = "";
+            while (temp.next != null) {
+                Variables.listOfContacts += temp.data + ": " + temp2.data + "\n";
                 temp = temp.next;
                 temp2 = temp2.next;
-                index++;
-
             }
-            if (temp.data.equals(nameToSearch)) {
-
-                JOptionPane.showMessageDialog(null, "Contact found\n" + temp.data + ": " + temp2.data);
-                return index;
-            } else {
-                JOptionPane.showMessageDialog(null, "contact not found");
-            }
+            Variables.listOfContacts += temp.data + ": " + temp2.data + "\n";
+            
         }
-        return -1;
+        else {
+            Variables.listOfContacts = "no contacts available.";
+        }
+        return Variables.listOfContacts;
+
     }
 
     public void deleteContact(String nameToDelete) {
         if (headForNames == null) {
             JOptionPane.showMessageDialog(null, "No contacts available.");
-            return;
-        }
-
-        Name temp = headForNames;
-        Number temp2 = headForNumbers;
-        int index = 0;
-
-        while (temp != null && !temp.data.equals(nameToDelete)) {
-            temp = temp.next;
-            temp2 = temp2.next;
-            index++;
-        }
-        if (temp == null) {
-            JOptionPane.showMessageDialog(null, "Contact not found.");
-            return;
-        }
-        if (index == 0) {
+        } 
+        else if(headForNames.next == null) {
             headForNames = headForNames.next;
             headForNumbers = headForNumbers.next;
-            JOptionPane.showMessageDialog(null, "Contact deleted.");
-            return;
         }
+        else {
+            Name temp = headForNames;
+            Number temp2 = headForNumbers;
+            int index = 0;
 
-        Name tempName = headForNames;
-        Number tempNumber = headForNumbers;
-        int count = 0;
+            while (!temp.data.equalsIgnoreCase(nameToDelete)) {
+                temp = temp.next;
+                temp2 = temp2.next;
+                index++;
+            }
 
-        while (count < index - 1) {
-            tempName = tempName.next;
-            tempNumber = tempNumber.next;
-            count++;
+            if (!temp.data.equalsIgnoreCase(nameToDelete)) {
+                JOptionPane.showMessageDialog(null, "Contact not found.");
+            }
+
+            else {
+                Name tempName = headForNames;
+                Number tempNumber = headForNumbers;
+                int count = 0;
+
+                while (count < index - 1) {
+                    tempName = tempName.next;
+                    tempNumber = tempNumber.next;
+                    count++;
+                }
+
+                Name currentName = tempName.next;
+                Number currentNumber = tempNumber.next;
+
+                if (currentName.next != null) {
+                    tempName.next = currentName.next;
+                    tempNumber.next = currentNumber.next;
+                    System.out.println("Contact deleted.");
+                } else {
+                    tempName.next = null;
+                    tempNumber.next = null;
+                    JOptionPane.showMessageDialog(null, "Contact deleted.");
+                }
+            }
         }
-        if (tempName.next.next == null) {
-            tempName.next = null;
-            tempNumber.next = null;
-        } else {
-            tempName.next = tempName.next.next;
-            tempNumber.next = tempNumber.next.next;
-        }
-
-        JOptionPane.showMessageDialog(null, "Contact deleted.");
+        Variables.phonebook.insertionSort();
     }
 
-
-    public void updateContact(String nameOfContactToUpdate, String newNumber) {
+    public void updateContact(String nameOfContactToUpdate, String newNumber, String newName) {
         if (headForNames == null) {
             JOptionPane.showMessageDialog(null, "no contacts available.");
         } else {
             Name temp = headForNames;
             Number temp2 = headForNumbers;
-            while (!temp.data.equals(nameOfContactToUpdate) && temp.next != null) {
+            while (!temp.data.equalsIgnoreCase(nameOfContactToUpdate) && temp.next != null) {
                 temp = temp.next;
                 temp2 = temp2.next;
             }
-            if (temp.data.equals(nameOfContactToUpdate)) {
+            if (temp.data.equalsIgnoreCase(nameOfContactToUpdate)) {
+                temp.data = newName;
                 temp2.data = newNumber;
+                Variables.phonebook.insertionSort();
                 JOptionPane.showMessageDialog(null, "contact updated\n" + temp.data + ": " + temp2.data);
             } else {
                 JOptionPane.showMessageDialog(null, "contact not found");
             }
         }
+        Variables.phonebook.insertionSort();
     }
+    public void insertionSort() {
+        if (headForNames == null || headForNames.next == null) {
+            return;
+        }
+        Name sortedNames = null;
+        Number sortedNumbers = null;
+        Name currentName = headForNames;
+        Number currentNumber = headForNumbers;
+
+        while (currentName != null) {
+            Name nextName = currentName.next;
+            Number nextNumber = currentNumber.next;
+
+            if (sortedNames == null || sortedNames.data.compareToIgnoreCase(currentName.data) > 0) {
+                currentName.next = sortedNames;
+                currentNumber.next = sortedNumbers;
+                sortedNames = currentName;
+                sortedNumbers = currentNumber;
+            } else {
+                Name tempName = sortedNames;
+                Number tempNumber = sortedNumbers;
+
+                while (tempName.next != null && tempName.next.data.compareToIgnoreCase(currentName.data) < 0) {
+                    tempName = tempName.next;
+                    tempNumber = tempNumber.next;
+                }
+
+                currentName.next = tempName.next;
+                currentNumber.next = tempNumber.next;
+                tempName.next = currentName;
+                tempNumber.next = currentNumber;
+            }
+
+            currentName = nextName;
+            currentNumber = nextNumber;
+        }
+        headForNames = sortedNames;
+        headForNumbers = sortedNumbers;
+    }
+    public void binarySearch(String nameToSearch) {
+
+        Variables.phonebook.insertionSort();
+
+        int left = 0;
+        int right = 0;
+
+        Name temp = headForNames;
+        while (temp != null) {
+            right++;
+            temp = temp.next;
+        }
+        right--;  // Adjust as right was incremented one extra time
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            Name midName = headForNames;
+            Number midNumber = headForNumbers;
+            int count = 0;
+            while (count < mid) {
+                midName = midName.next;
+                midNumber = midNumber.next;
+                count++;
+            }
+
+            if (midName.data.equalsIgnoreCase(nameToSearch)) {
+                JOptionPane.showMessageDialog(null, "Contact found\n" + midName.data + ": " + midNumber.data);
+                return;
+            } else if (midName.data.compareToIgnoreCase(nameToSearch) < 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Contact not found");
+    }
+
+
 }

@@ -8,7 +8,7 @@ Jada Shangadi-224079948
 
 
 Project Overview
-•The project aims to develop a competent phonebook application for a Namibian telecommunications company using data structures such as arrays and linked lists.
+•The project aims to develop a competent phonebook application for a Namibian telecommunications company using data structures such as arrays,linked lists, Binary Search and Insertion sort.
 This application will support operations like inserting contacts, searching for contacts, updating contacts, deleting and displaying contacts. Additionally, the
 application will then display the contacts as entered into the insert algorithm.
 
@@ -56,13 +56,14 @@ Modules
 
 •	Efficiency Analysis
 •	Sorted Link list (linear search): O(n), if the array is not sorted, allowing for linear search implementation.
-
+• Binary Search: 0(1),if the contact to be deleted is the head of the list.
+• Insertion Sort: 0(n^2), The algorithm has to traverse the entire list for each element being inserted into the sorted list.
 
 
 
 Search Algorithm Efficiency
 •	The linear search in charge for finding contacts in an unsorted list has a time complexity of O(n), where n is the number of contacts.
-
+•
 
 
 Conclusion

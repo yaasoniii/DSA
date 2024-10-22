@@ -6,7 +6,7 @@ package dsa;
 
 /**
  *
- * @author Linus
+ * @author Abigail
  */
 public class update extends javax.swing.JFrame {
 

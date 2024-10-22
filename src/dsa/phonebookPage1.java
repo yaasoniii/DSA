@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Linus
+ * @author Florinda & Jada
  */
 public class phonebookPage1 extends javax.swing.JFrame {
 
